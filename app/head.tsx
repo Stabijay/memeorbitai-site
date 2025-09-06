@@ -1,29 +1,46 @@
 // app/head.tsx
 export default function Head() {
+  const siteTitle = "MemeOrbit";
+  const siteDescription = "Your hub for memes and AI fun. 😎🎉";
+  const siteUrl = "https://memeorbitai.com";
+  const logoUrl = `${siteUrl}/logo.png`; // Replace with your real logo path
+
   return (
     <>
       {/* Basic SEO */}
-      <title>MemeOrbit – Your Hub for Memes and AI Fun</title>
-      <meta name="description" content="MemeOrbit is your go-to site for memes and AI-powered fun. Explore, share, and enjoy!" />
-      <meta name="keywords" content="memes, AI memes, MemeOrbit, fun, entertainment, viral memes" />
-      <meta name="author" content="Abiodun Owolabi" />
-      <meta name="robots" content="index, follow" />
+      <title>{siteTitle}</title>
+      <meta name="description" content={siteDescription} />
 
-      {/* Open Graph / Social Sharing */}
-      <meta property="og:title" content="MemeOrbit – Your Hub for Memes and AI Fun" />
-      <meta property="og:description" content="MemeOrbit is your go-to site for memes and AI-powered fun. Explore, share, and enjoy!" />
+      {/* Open Graph */}
+      <meta property="og:title" content={siteTitle} />
+      <meta property="og:description" content={siteDescription} />
+      <meta property="og:image" content={logoUrl} />
+      <meta property="og:url" content={siteUrl} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://memeorbitai.com" />
-      <meta property="og:image" content="https://memeorbitai.com/path-to-your-logo.png" />
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="MemeOrbit – Your Hub for Memes and AI Fun" />
-      <meta name="twitter:description" content="MemeOrbit is your go-to site for memes and AI-powered fun. Explore, share, and enjoy!" />
-      <meta name="twitter:image" content="https://memeorbitai.com/path-to-your-logo.png" />
+      <meta name="twitter:title" content={siteTitle} />
+      <meta name="twitter:description" content={siteDescription} />
+      <meta name="twitter:image" content={logoUrl} />
 
-      {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
+      {/* JSON-LD Structured Data for homepage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: siteTitle,
+            url: siteUrl,
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${siteUrl}/search?q={search_term_string}`,
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
     </>
   );
 }
